@@ -25,10 +25,31 @@ const petList = {
     ]
 }
 
+/* QUERY */
+// Query params: URL/api/v1/pets?age=3&type=dog
+// Son similares a los params, pero se suelen enviar más de un dato.
+// Las querys son abiertas, no definimos cuantas variables nos tienen que enviar, ni como se llaman. Nuestra responsabilidad es SOLO tomar en cuenta aquellos que nos interesen.
 router.get('/api/v1/pets', (request, response) => {
-    response.send(petList);
+    console.log('Query de pets', request.query);
+    const { age, type } = request.query;
+
+    if(!age && !type) {
+        response.send(petList);
+        return;
+    }
+
+    const filteredPets = petList.pets.filter(pet => {
+        return pet.age == age || pet.type == type;
+    });
+
+    response.send(filteredPets);
+    return;
 });
 
+/* PARAMS */
+// Obtener parámetros de rutas dinámicas.
+// Params 'URL/api/v1/pets/1'
+// Los : en la ruta indican que es un valor dinámico (params)
 router.get('/api/v1/pets/:petId', (request, response) => {
     console.log('Params de onePet', request.params);
     // response.send(`Solicitaste la pet con id: ${request.params.petId}`)
