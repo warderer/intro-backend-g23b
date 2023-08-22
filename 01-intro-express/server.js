@@ -1,6 +1,7 @@
 // #1 Llamar a la biblioteca de express (importarla)
 const express = require('express');
 const petsRouter = require('./api/v1/pets');
+const cakesRouter = require('./api/v1/cakes');
 
 // #2 Crear una instancia de express
 const app = express();
@@ -17,6 +18,7 @@ app.get('/', (request, response) => {
 
 // #6 Importar rutas en otros archivos, con ayuda del router de express
 app.use(petsRouter);
+app.use(cakesRouter);
 
 // #5 Encender/levantar el servidor, por defecto usamos el puerto 3000
 app.listen(3000, () => {
