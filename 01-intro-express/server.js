@@ -3,6 +3,7 @@ const express = require('express');
 const petsRouter = require('./api/v1/pets');
 const cakesRouter = require('./api/v1/cakes');
 const pokemonsRouter = require('./api/v1/pokemons');
+const usersRouter = require('./api/v1/users');
 
 // #2 Crear una instancia de express
 const app = express();
@@ -21,6 +22,7 @@ app.get('/', (request, response) => {
 app.use(petsRouter);
 app.use(cakesRouter);
 app.use(pokemonsRouter);
+app.use(usersRouter);
 
 // #5 Encender/levantar el servidor, por defecto usamos el puerto 3000
 app.listen(3000, () => {
