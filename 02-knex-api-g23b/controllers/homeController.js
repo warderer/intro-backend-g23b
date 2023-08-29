@@ -31,13 +31,13 @@ const updateOneHome = (req, res) => {
 
 const destroyOneHome = (req, res) => {
   ModelHomes.destroy(req.params.idHome)
-    .then(row => res.sendStatus(204).send(row))
+    .then(() => res.status(204).send())
     .catch(err => res.status(400).send(err.message))
 }
 
 const softDeleteOneHome = (req, res) => {
   ModelHomes.softDelete(req.params.idHome)
-    .then(row => { res.send(204).send(row) })
+    .then(() => { res.status(204).send() })
     .catch(err => { res.status(400).send(err.message) })
 }
 
